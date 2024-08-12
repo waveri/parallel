@@ -159,7 +159,7 @@ int get_length(){
 int main(){
     insert_at_beginning(23);
     insert_at_end(45);
-    insert_at(1,67);
-    get_length();
+    insert_at_end(90);
+    insert_at(2,55);
     traverse();
 }

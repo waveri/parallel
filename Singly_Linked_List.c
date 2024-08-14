@@ -112,10 +112,10 @@ void remove_val(int value){
         
 }
 
-void remove_at(int index){
+void remove_at(int index){ //incorrect code
     int get_length();
     int length = get_length();
-    if (index < 0 || index > length){
+    if (index < 0 || index >= length){
         printf("Invalid index\n");
         return;
     }
@@ -161,5 +161,6 @@ int main(){
     insert_at_end(45);
     insert_at_end(90);
     insert_at(2,55);
+    remove_at(1);
     traverse();
 }

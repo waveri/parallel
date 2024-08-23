@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #define SIZE 100
 typedef struct{
@@ -38,10 +39,10 @@ void traverse(Stack *stack){
         printf("%d \n", stack->arr[i]);
     }
 }
-int isFull(Stack* stack){
+bool is_Full(Stack* stack){
     return stack->top==SIZE-1;
 }
-int isEmpty(Stack* stack){
+bool is_Empty(Stack* stack){
     return stack->top==-1;
 }
 
@@ -51,4 +52,5 @@ int main(){
     push(&stack,10);
     push(&stack,90);
     traverse(&stack);
+    printf("%s",is_Empty(&stack) ? "YES":"NO");
 }

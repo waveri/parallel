@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct Stack{
     int data;
@@ -16,6 +17,10 @@ void push(int value){
     top=NewNode;
 }
 int pop(){
+    if(top == NULL){
+        printf("Stack is empty\n");
+        return -1;
+    }
     int popped_value=top->data;
     struct Stack *temp=top;
     top=top->next;
@@ -23,17 +28,28 @@ int pop(){
     return popped_value;
 }
 void peek(){
+    if(top == NULL){
+        printf("Stack is empty\n");
+        return;
+    }
     printf("%d \n", top->data);
 }
 int traverse(){
+    if(top == NULL){
+        printf("Stack is empty\n");
+        return 0;
+    }
     struct Stack *current=top;
     while(current!=NULL){
         printf("%d \n",current->data);
         current=current->next;
     }
 }
-int is_Empty(){
+bool is_Empty(){
     return top==NULL;
+}
+bool is_Full(){
+    return top!=NULL;
 }
 
 int main(){
@@ -42,4 +58,7 @@ int main(){
     pop();
     peek();
     traverse();
+    pop();
+    printf("Is stack empty? %s\n", is_Empty() ? "YES" : "NO");
+    printf("Is stack full? %s\n", is_Full() ? "YES" : "NO");
 }

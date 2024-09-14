@@ -18,8 +18,8 @@ void insert_at_beginning(int value){
     }
     else{
         while(current->next!=head){
-        current=current->next;
-    }
+            current=current->next;
+        }
     current->next=NewNode;
     NewNode->next=head;
     head=NewNode;

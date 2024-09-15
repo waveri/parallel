@@ -20,7 +20,7 @@ void push(Stack *stack, int value){
     }
 }
 int pop(Stack *stack){
-    if(stack->top==SIZE-1){
+    if(stack->top==-1){
         printf("stack underflow");
     }
     else{

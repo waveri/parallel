@@ -54,10 +54,10 @@ int peek(Queue *queue){
     }
 }
 bool is_Empty(Queue *queue){
-    return (queue->front==queue->rear);
+    return (queue->front==-1);
 }
 bool is_Full(Queue *queue){
-    return (queue->front!=queue->rear);
+    return (queue->rear==SIZE-1);
 }
 
 int main(){

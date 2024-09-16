@@ -16,16 +16,20 @@ int partition(int arr[], int low, int high) {
             swap(&arr[i], &arr[j]);
         }
     }
-
-    swap(&arr[i + 1], &arr[high]);
-    return i + 1;
+    if (i == -1) {
+        swap(&arr[low], &arr[high]);
+        return low;
+    } else {
+        swap(&arr[i + 1], &arr[high]);
+        return i + 1;
+    }
 }
 
 void quicksort(int arr[], int low, int high) {
     if (low < high) {
-        int pivot = partition(arr, low, high);
-        quicksort(arr, low, pivot - 1);
-        quicksort(arr, pivot + 1, high);
+        int loc = partition(arr, low, high);
+        quicksort(arr, low, loc - 1);
+        quicksort(arr, loc + 1, high);
     }
 }
 

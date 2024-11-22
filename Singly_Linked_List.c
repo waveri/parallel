@@ -112,37 +112,55 @@ void remove_val(int value){
         
 }
 
-void remove_at(int index){ //incorrect code
-    int get_length();
+void remove_at(int index) {
     int length = get_length();
-    if (index < 0 || index >= length){
+    if (index < 0 || index >= length) {
         printf("Invalid index\n");
         return;
     }
+
     struct Node *current = head;
     struct Node *previous = NULL;
-    if(index==0){
-        head=head->next;
-    }
-    if(index==length){
-        while(current!=NULL){
-            previous->next=current->next;
-            free(current);
-        }
+
+    // Case 1: Remove the first node
+    if (index == 0) {
+        head = head->next;
+        free(current);
         return;
     }
-    for (int i = 0; i < index - 1; i++){
-        previous=current;
-        current=current->next;
-        if(current==NULL){
-            previous->next=NULL;
-        }
-        else{
-            previous->next=current->next;
-            free(current);
-        }
+
+    // Traverse to the node at the given index
+    for (int i = 0; i < index; i++) {
+        previous = current;
+        current = current->next;
     }
+
+    // Update the previous node's `next` pointer to skip the current node
+    previous->next = current->next;
+
+    // Free the memory of the current node
+    free(current);
 }
+
+int find_max() {
+    if (head == NULL) {
+        printf("The linked list is empty\n");
+        return -1; // Return a special value to indicate an empty list
+    }
+
+    struct Node *current = head;
+    int max_value = current->data;
+
+    while (current != NULL) {
+        if (current->data > max_value) {
+            max_value = current->data;
+        }
+        current = current->next;
+    }
+
+    return max_value;
+}
+
 int get_length(){
     struct Node *current=head;
     if(head==NULL){

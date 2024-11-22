@@ -157,10 +157,8 @@ int find_max() {
         }
         current = current->next;
     }
-
     return max_value;
 }
-
 int get_length(){
     struct Node *current=head;
     if(head==NULL){
@@ -173,7 +171,6 @@ int get_length(){
     }
     return count;
 }
-
 int main(){
     insert_at_beginning(23);
     insert_at_end(45);

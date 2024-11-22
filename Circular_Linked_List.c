@@ -25,7 +25,6 @@ void insert_at_beginning(int value){
     head=NewNode;
     }
 }
-
 void insert_at_end(int value){
     struct Node *NewNode=(struct Node*)malloc(sizeof(struct Node));
     NewNode->data=value;
@@ -42,7 +41,6 @@ void insert_at_end(int value){
         NewNode->next=head;
     }
 }
-
 void insert_at(int index,int value){
     int get_length();
     int a=get_length();
@@ -67,7 +65,6 @@ void insert_at(int index,int value){
     NewNode->next=current->next;
     current->next=NewNode;
 }
-
 int get_length() {
     if (head == NULL) {
         return 0;
@@ -83,7 +80,6 @@ int get_length() {
 
     return count;
 }
-
 void traverse(){
     struct Node *current=head;
     if(current==NULL){
@@ -97,7 +93,6 @@ void traverse(){
         }while(current!=head);
     }
 }
-
 struct Node *search(int value){
     struct Node *current = head;
     if (head == NULL) {
@@ -116,7 +111,6 @@ struct Node *search(int value){
     printf("%d is not present\n", value);
     return NULL;
 }
-
 void remove_val(int value){
     struct Node *previous = head;
     struct Node *current = head->next;
@@ -156,35 +150,45 @@ void remove_val(int value){
 
     printf("Element not found in the list\n");
 }
-
-void remove_at(int index){ //this function doesn't work correctly yet
-    int get_length;
-    int a=get_length;
-    if(index<0 || index>=a){
-        printf("invalid index input");
+void remove_at(int index) {
+    int length = get_length();
+    if (index < 0 || index >= length) {
+        printf("Invalid index input\n");
         return;
     }
-    if(index==0){
-        if (head == head->next) {  
+
+    if (index == 0) {
+        // Remove the head node
+        if (head->next == head) {
+            // Only one node in the list
             free(head);
             head = NULL;
             return;
+        } else {
+            // More than one node
+            struct Node *current = head;
+            while (current->next != head) {
+                current = current->next;
+            }
+            struct Node *temp = head;
+            current->next = head->next;
+            head = head->next;
+            free(temp);
+            return;
         }
-        struct Node *current = head;
-        while (current->next != head) {
-            current = current->next;
-        }
-        current->next = head->next;
-        free(head);
-        head = current->next;
-        return;
     }
-    struct Node *previous=head;
-    struct Node *current=previous->next;
-    for(int i=0;i<index-1;i++){
-        previous = previous->next;
+
+    // Traverse to the node at the given index
+    struct Node *previous = head;
+    struct Node *current = head->next;
+
+    for (int i = 1; i < index; i++) {
+        previous = current;
+        current = current->next;
     }
-    previous->next=current->next;
+
+    // Remove the node
+    previous->next = current->next;
     free(current);
 }
 
